@@ -14,12 +14,8 @@ public class Main {
         play();
     }
     public static void play(){
-        if (table.equals(0)){
-                System.out.println("Tebrikler Kazandınız");
-        }
-        else{
         drawTable();
-        changeNumber();}
+        changeNumber();
     }
 
     public static void drawTable(){
@@ -47,18 +43,23 @@ public class Main {
         }while (i < table.length);
     }
     public static void changeNumber(){
-        System.out.println("Sayıyı değiştirmek için önce sütun sonra satır değerini giriniz : ");
-        String choose = scanner.nextLine();
-        String column = choose.split("")[0];
-        int row = Integer.parseInt(choose.split("")[choose.split("").length-1])-1;
-        String script = "ABCDEFGHİJKLMNOPQRSTUVWXYZ";
-        int col = script.toLowerCase().indexOf(column.toLowerCase());
-        System.out.println("Sayı'nın kaç olmasını istiyorsunuz");
-        int number = scanner.nextInt();
-        if(isSuitable(number,col,row)) table[row<3 ? 0: row<6 ? 1:2][col<3 ? 0: col<6 ? 1:2][row%3][col%3] = number;
-        else System.out.println("Hatalı giriş lütfen tekrar deneyiniz.");
-        scanner.nextLine();
-        play();
+        try {
+            System.out.println("Sayıyı değiştirmek için önce sütun sonra satır değerini giriniz : ");
+            String choose = scanner.nextLine();
+            String column = choose.split("")[0];
+            int row = Integer.parseInt(choose.split("")[choose.split("").length-1])-1;
+            String script = "ABCDEFGHİJKLMNOPQRSTUVWXYZ";
+            int col = script.toLowerCase().indexOf(column.toLowerCase());
+            System.out.println("Sayı'nın kaç olmasını istiyorsunuz");
+            int number = scanner.nextInt();
+            if(isSuitable(number,col,row)) table[row<3 ? 0: row<6 ? 1:2][col<3 ? 0: col<6 ? 1:2][row%3][col%3] = number;
+            else System.out.println("Hatalı giriş lütfen tekrar deneyiniz.");
+            scanner.nextLine();
+            play();
+        } catch (NumberFormatException e) {
+            System.out.println("Hatalı giriş tekrar deneyiniz.");
+            changeNumber();
+        }
     }
     static boolean isSuitable(int number, int col, int row){
         if(number<10 && number>0){
