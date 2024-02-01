@@ -47,7 +47,6 @@ public class Main {
         }while (i < table.length);
     }
     public static void changeNumber(){
-
         System.out.println("Sayıyı değiştirmek için önce sütun sonra satır değerini giriniz : ");
         String choose = scanner.nextLine();
         String column = choose.split("")[0];
@@ -62,11 +61,7 @@ public class Main {
         play();
     }
     static boolean isSuitable(int number, int col, int row){
-        boolean range = number<10 && number>0;
-        boolean suitable = true;
-//        System.out.println((row<3 ? 0: row<6 ? 1:2)+"-"+(col<3 ? 0: col<6 ? 1:2)+"-"+(row%3)+"-"+(col%3));
-
-        if(range){
+        if(number<10 && number>0){
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if(!(((row < 3 ? 0 : row < 6 ? 1 : 2) + "-" + (col < 3 ? 0 : col < 6 ? 1 : 2) + "-" + (row % 3) + "-" + (col % 3))
@@ -77,8 +72,13 @@ public class Main {
             for (int j = 0; j < 3; j++) {
                 if(!(((row < 3 ? 0 : row < 6 ? 1 : 2) + "-" + (col < 3 ? 0 : col < 6 ? 1 : 2) + "-" + (row % 3) + "-" + (col % 3))
                         .equals((row<3 ? 0: row<6 ? 1:2)+"-"+i+"-"+(row%3)+"-"+j))){
-                    System.out.println((row<3 ? 0: row<6 ? 1:2)+"-"+i+"-"+(row%3)+"-"+j);
                     if(table[row<3 ? 0: row<6 ? 1:2][i][row%3][j]==number) return false;
+                }
+            }
+            for (int j = 0; j < 3; j++) {
+                if(!(((row < 3 ? 0 : row < 6 ? 1 : 2) + "-" + (col < 3 ? 0 : col < 6 ? 1 : 2) + "-" + (row % 3) + "-" + (col % 3))
+                        .equals((row<3 ? 0: row<6 ? 1:2)+"-"+(col < 3 ? 0 : col < 6 ? 1 : 2)+"-"+i+"-"+j))){
+                    if(table[row<3 ? 0: row<6 ? 1:2][(col < 3 ? 0 : col < 6 ? 1 : 2)][i][j]==number) return false;
                 }
             }
         }
